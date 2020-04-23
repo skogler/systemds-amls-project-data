@@ -20,7 +20,7 @@ def main():
         first = next(reader)
         ncol = len(first)
     with input_path.with_name(input_path.name + '.mtd').open('w') as mtdfile:
-        mtdfile.write(f'{{"rows": {nrow}, "cols": {ncol}, "format": "csv", "data_type": "frame"}}')
+        mtdfile.write(f'{{"rows": {nrow}, "cols": {ncol}, "format": "csv", "data_type": "frame", "header": true}}')
 
 
 if __name__ == "__main__":
