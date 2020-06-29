@@ -1,0 +1,10 @@
+{
+    "data_type": "matrix",
+    "value_type": "double",
+    "rows": 2295,
+    "cols": 2617,
+    "nnz": 601985,
+    "format": "text",
+    "author": "iseratho",
+    "created": "2020-06-29 21:14:46 CEST"
+}
