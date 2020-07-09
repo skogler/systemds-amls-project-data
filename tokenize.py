@@ -1,6 +1,7 @@
 import argparse
 import re
 from collections import Counter
+from pathlib import Path
 from typing.re import Pattern
 import csv
 import html
@@ -50,7 +51,7 @@ def main():
         num_rows = 0
         for columns in reader:
             id = quote_pattern.sub("", columns[args.id_column])
-            tokens = []
+            tokens = ["<<<CLS>>>"]
             for ci in args.columns:
                 text = columns[ci]
                 if not args.no_html_unescape:
@@ -66,6 +67,9 @@ def main():
             num_tokens += len(cnt)
             num_rows += 1
         print(f"Wrote {num_rows} ids with {num_tokens} tokens to {args.output_file}")
+        with Path(args.output_file + ".mtd").open('w') as mtdfile:
+            mtdfile.write(
+                f'{{"rows": {num_tokens}, "cols": 3, "format": "csv", "data_type": "frame", "header": false}}')
 
 
 if __name__ == '__main__':
