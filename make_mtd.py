@@ -1,16 +1,19 @@
 #!/usr/bin/env python
 import csv
 import sys
-from pathlib  import Path
-from itertools import (takewhile,repeat)
+from pathlib import Path
+from itertools import (takewhile, repeat)
+
 
 def linecount(filename: Path):
     with filename.open('rb') as f:
-        bufgen = takewhile(lambda x: x, (f.raw.read(1024*1024) for _ in repeat(None)))
-        return sum( buf.count(b'\n') for buf in bufgen )
+        bufgen = takewhile(lambda x: x, (f.raw.read(1024 * 1024) for _ in repeat(None)))
+        return sum(buf.count(b'\n') for buf in bufgen)
 
-delimiters=[',', ';', ' ']
-quotechars=['"', "'", "|"]
+
+delimiters = [',', ';', ' ']
+quotechars = ['"', "'", "|"]
+
 
 def main():
     input_path = Path(sys.argv[1])
