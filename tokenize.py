@@ -49,7 +49,7 @@ def main():
             next(reader, None)
         num_tokens = 0
         num_rows = 0
-        for columns in reader:
+        for row_idx, columns in enumerate(reader):
             id = quote_pattern.sub("", columns[args.id_column])
             tokens = ["<<<CLS>>>"]
             for ci in args.columns:
@@ -64,6 +64,8 @@ def main():
                 if not token or count <= 0:
                     continue
                 writer.writerow([id, token, count])
+            if len(cnt) == 1:
+                print(f"Empty row {row_idx} column {ci} |{text}|")
             num_tokens += len(cnt)
             num_rows += 1
         print(f"Wrote {num_rows} ids with {num_tokens} tokens to {args.output_file}")
