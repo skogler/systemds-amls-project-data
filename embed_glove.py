@@ -61,7 +61,7 @@ def main():
     print(f"Embeddings dimension: {embeddings_array.shape[0]}x{embeddings_array.shape[1]}")
     with open(args.input_file, "r") as infile, open(args.output_file, "w") as outfile:
         reader = csv.reader(infile)
-        writer = csv.writer(outfile, quoting=csv.QUOTE_NONE)
+        writer = csv.writer(outfile, quoting=csv.QUOTE_NONE, lineterminator='\n')
         if not args.no_header:
             next(reader, None)
         num_rows = 0

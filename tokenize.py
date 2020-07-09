@@ -43,7 +43,7 @@ def main():
     args = parser.parse_args()
     with open(args.input_file, "r") as infile, open(args.output_file, "w") as outfile:
         reader = csv.reader(infile)
-        writer = csv.writer(outfile)
+        writer = csv.writer(outfile, lineterminator='\n')
         if not args.no_header:
             next(reader, None)
         num_tokens = 0
